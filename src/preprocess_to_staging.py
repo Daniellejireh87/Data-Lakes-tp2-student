@@ -167,6 +167,16 @@ def preprocess_to_staging(bucket_raw, bucket_staging, input_file, output_prefix)
 
 if __name__ == "__main__":
     import argparse
+    import sys
+    sys.argv = [
+        "preprocess_to_staging.py",
+        "--bucket_raw", "raw",
+        "--bucket_staging", "staging",
+        "--input_file", "./tmp/combined_raw.csv",
+        "--output_prefix", "preprocessed_data",
+        
+    ]
+
 
     parser = argparse.ArgumentParser(description="Preprocess data from raw to staging bucket")
     parser.add_argument("--bucket_raw", type=str, required=True, help="Name of the raw S3 bucket")

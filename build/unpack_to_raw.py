@@ -37,7 +37,7 @@ def unpack_data(input_dir, bucket_name, output_file_name):
         print("All files combined successfully.")
 
         # Save the combined data to a CSV file
-        combined_csv_path = f"/tmp/{output_file_name}"  # Save locally before uploading
+        combined_csv_path = f"./tmp/{output_file_name}"  # chemin relatif vers un dossier tmp
         combined_data.to_csv(combined_csv_path, index=False)
         print(f"Combined file saved locally at {combined_csv_path}.")
 
@@ -50,6 +50,13 @@ def unpack_data(input_dir, bucket_name, output_file_name):
 
 if __name__ == "__main__":
     import argparse
+    import sys
+    sys.argv = [
+        "unpack_to_raw.py",
+        "--input_dir", "./Data-Lakes-tp2-student/data/raw",
+        "--bucket_name", "raw",
+        "--output_file_name", "combined_raw.csv",
+    ]
 
     parser = argparse.ArgumentParser(description="Unpack, combine, and upload protein data")
     parser.add_argument("--input_dir", type=str, required=True, help="Path to input directory")
@@ -58,3 +65,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     unpack_data(args.input_dir, args.bucket_name, args.output_file_name)
+
+    
+ 
